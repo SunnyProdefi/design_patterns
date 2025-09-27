@@ -1,0 +1,75 @@
+@startuml
+title Composite Pattern - Class Diagram
+left to right direction
+class "std::string" as C_0001275076681856179721
+class C_0001275076681856179721 {
+__
+}
+class "std::shared_ptr<Component>" as C_0002797381440546426954
+class C_0002797381440546426954 {
+__
+}
+class "std::vector<std::shared_ptr<Component>>" as C_0016862293964472096198
+class C_0016862293964472096198 {
+__
+}
+class "std::shared_ptr<Department>" as C_0007181941499615289447
+class C_0007181941499615289447 {
+__
+}
+abstract "Component" as C_0013412620662695821676
+abstract C_0013412620662695821676 {
++~Component() constexpr = default : void
+..
+{abstract} +display(int depth) = 0 : void
+{abstract} +getName() const = 0 : std::string
+__
+}
+class "Department" as C_0006381115520668891713
+class C_0006381115520668891713 {
++Department(const std::string & name) : void
+..
++add(std::shared_ptr<Component> component) : void
++display(int depth) : void
++getChildren() const : const std::vector<std::shared_ptr<Component>> &
++getName() const : std::string
+__
+-children_ : std::vector<std::shared_ptr<Component>>
+-name_ : std::string
+}
+class "Employee" as C_0007277833760922687289
+class C_0007277833760922687289 {
++Employee(const std::string & name) : void
+..
++display(int depth) : void
++getName() const : std::string
+__
+-name_ : std::string
+}
+class "Company" as C_0014647881905830165961
+class C_0014647881905830165961 {
++Company(const std::string & name) : void
+..
++display() const : void
++getRoot() const : std::shared_ptr<Department>
+__
+-name_ : std::string
+-root_ : std::shared_ptr<Department>
+}
+C_0002797381440546426954 ..> C_0013412620662695821676
+C_0016862293964472096198 ..> C_0002797381440546426954
+C_0007181941499615289447 ..> C_0006381115520668891713
+C_0013412620662695821676 ..> C_0001275076681856179721
+C_0006381115520668891713 ..> C_0002797381440546426954
+C_0006381115520668891713 o-- C_0001275076681856179721 : -name_
+C_0006381115520668891713 o-- C_0016862293964472096198 : -children_
+C_0013412620662695821676 <|-- C_0006381115520668891713
+C_0007277833760922687289 o-- C_0001275076681856179721 : -name_
+C_0013412620662695821676 <|-- C_0007277833760922687289
+C_0014647881905830165961 o-- C_0001275076681856179721 : -name_
+C_0014647881905830165961 --> C_0006381115520668891713 : -root_
+C_0014647881905830165961 --> C_0007181941499615289447 : -root_
+
+'Generated with clang-uml, version 0.6.2
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml

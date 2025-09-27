@@ -1,0 +1,152 @@
+# 指向编译数据库所在目录
+compilation_database_dir: build
+
+# 生成的图会放到这个目录（不存在会自动创建）
+output_directory: diagrams
+
+# 生成多个图：一个全局类图 + 一个只看工厂模式的类图
+diagrams:
+  all_patterns:
+    type: class
+    # 选取需要解析的翻译单元（cpp 文件）；头文件会随包含关系解析进来
+    glob:
+      - adapter_pattern/**/*.cpp
+      - builder_pattern/**/*.cpp
+      - decorator_pattern/**/*.cpp
+      - factory_pattern/**/*.cpp
+      - factory_pattern_abstract/**/*.cpp
+      - prototype_pattern/**/*.cpp
+      - proxy_pattern/**/*.cpp
+      - singleton_pattern/**/*.cpp
+    # 给生成的 PlantUML 注入一些指令（可选）
+    plantuml:
+      before:
+        - title All Patterns - Class Diagram
+        - left to right direction
+
+  factory_only:
+    type: class
+    glob:
+      - factory_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Factory Pattern - Class Diagram
+        - left to right direction
+
+  factory_macro_only:
+    type: class
+    glob:
+      - factory_pattern/**/factory_registration_macro.cpp
+    exclude:
+      namespaces:
+        - std
+    plantuml:
+      before:
+        - title Factory Pattern Macro - Class Diagram
+        - left to right direction
+
+  facade_only:
+    type: class
+    glob:
+      - facade_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Facade Pattern - Class Diagram
+        - left to right direction
+
+  bridge_only:
+    type: class
+    glob:
+      - bridge_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Bridge Pattern - Class Diagram
+        - left to right direction
+
+  composite_only:
+    type: class
+    glob:
+      - composite_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Composite Pattern - Class Diagram
+        - left to right direction
+
+  flyweight_only:
+    type: class
+    glob:
+      - flyweight_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Flyweight Pattern - Class Diagram
+        - left to right direction
+
+  observer_only:
+    type: class
+    glob:
+      - observer_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Observer Pattern - Class Diagram
+        - left to right direction
+
+  strategy_only:
+    type: class
+    glob:
+      - strategy_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Strategy Pattern - Class Diagram
+        - left to right direction
+
+  command_only:
+    type: class
+    glob:
+      - command_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Command Pattern - Class Diagram
+        - left to right direction
+
+  mediator_only:
+    type: class
+    glob:
+      - mediator_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Mediator Pattern - Class Diagram
+        - left to right direction
+
+  memento_only:
+    type: class
+    glob:
+      - memento_pattern/**/*.cpp
+    plantuml:
+      before:
+        - title Memento Pattern - Class Diagram
+        - left to right direction
+
+  template_method_only:
+    type: class
+    glob:
+      - template_method_pattern/**/*.cpp
+    exclude:
+      namespaces:
+        - std
+    plantuml:
+      before:
+        - title Template Method Pattern - Class Diagram
+        - left to right direction
+
+  chain_of_responsibility_only:
+    type: class
+    glob:
+      - chain_of_responsibility_pattern/**/*.cpp
+    exclude:
+      namespaces:
+        - std
+    plantuml:
+      before:
+        - title Template Method Pattern - Class Diagram
+        - left to right direction
+    

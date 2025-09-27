@@ -1,0 +1,59 @@
+@startuml
+title Observer Pattern - Class Diagram
+left to right direction
+class "std::vector<Observer *>" as C_0014268390725449191664
+class C_0014268390725449191664 {
+__
+}
+class "std::string" as C_0001275076681856179721
+class C_0001275076681856179721 {
+__
+}
+abstract "Observer" as C_0015633912985183881923
+abstract C_0015633912985183881923 {
++~Observer() constexpr = default : void
+..
+{abstract} +update(int hour) = 0 : void
+__
+}
+abstract "Subject" as C_0003713613566669081235
+abstract C_0003713613566669081235 {
++~Subject() constexpr = default : void
+..
+{abstract} +notifyObservers() = 0 : void
+{abstract} +registerObserver(Observer * observer) = 0 : void
+{abstract} +removeObserver(Observer * observer) = 0 : void
+__
+}
+class "Clock" as C_0015348806945669333632
+class C_0015348806945669333632 {
++Clock() : void
+..
++getObservers() const : const std::vector<Observer *> &
++notifyObservers() : void
++registerObserver(Observer * observer) : void
++removeObserver(Observer * observer) : void
++tick() : void
+__
+-hour : int
+-observers : std::vector<Observer *>
+}
+class "Student" as C_0002905106241628501878
+class C_0002905106241628501878 {
++Student(const std::string & name) : void
+..
++update(int hour) : void
+__
+-name : std::string
+}
+C_0014268390725449191664 ..> C_0015633912985183881923
+C_0003713613566669081235 ..> C_0015633912985183881923
+C_0015348806945669333632 ..> C_0015633912985183881923
+C_0015348806945669333632 o-- C_0014268390725449191664 : -observers
+C_0003713613566669081235 <|-- C_0015348806945669333632
+C_0002905106241628501878 o-- C_0001275076681856179721 : -name
+C_0015633912985183881923 <|-- C_0002905106241628501878
+
+'Generated with clang-uml, version 0.6.2
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml

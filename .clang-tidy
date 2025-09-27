@@ -1,0 +1,10 @@
+Checks: >
+  -*,
+  bugprone-*,
+  clang-analyzer-*,
+  modernize-*,
+  performance-*,
+  readability-*
+WarningsAsErrors: ''
+HeaderFilterRegex: '^(src|include|adapter_pattern|builder_pattern|decorator_pattern|factory_pattern|factory_pattern_abstract|prototype_pattern|proxy_pattern|singleton_pattern)/'
+FormatStyle: file
